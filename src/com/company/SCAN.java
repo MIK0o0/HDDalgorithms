@@ -3,13 +3,14 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SSTF {
-    public int sstfAlgo(ArrayList<Task> list){
+public class SCAN {
+    public int scanAlgo(ArrayList<Task> list){
         ArrayList<Task> tasks = list;
         ArrayList<Task> queue = new ArrayList<>();
         int time = 0;
         int result = 0;
         int headSegment = 0;
+        boolean up = true;
         while (tasks.size() != 0 || queue.size() != 0){
             if (queue.isEmpty()){
                 queue.add(tasks.get(0));
@@ -19,7 +20,7 @@ public class SSTF {
                 }
             }
             if (!tasks.isEmpty()) {
-                while (tasks.get(0).getArrivalTime() <= time ) {
+                while (tasks.get(0).getArrivalTime() <= time) {
                     queue.add(tasks.get(0));
                     tasks.remove(0);
                     if (tasks.isEmpty()){
@@ -27,14 +28,24 @@ public class SSTF {
                     }
                 }
             }
-            Collections.sort(queue,new sstfComparator(headSegment));
-            int tym = Math.abs(headSegment - queue.get(0).getSegment());
-            result += tym;
-            time += tym;
-            headSegment = queue.get(0).getSegment();
-            queue.remove(0);
+            Collections.sort(queue,new scanComparator(headSegment));
+            if ((up && queue.get(0).getSegment()>= headSegment) || (!up && queue.get(0).getSegment() <= headSegment)) {
+                int tym = Math.abs(headSegment - queue.get(0).getSegment());
+                result += tym;
+                time += tym;
+                headSegment = queue.get(0).getSegment();
+                queue.remove(0);
+            }else {
+                time++;
+                result++;
+                headSegment++;
+            }
+            if (headSegment >= Main.max || headSegment <= 0 ){
+                up = !up;
+            }
 
         }
         return result;
     }
+
 }

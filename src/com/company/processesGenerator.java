@@ -18,12 +18,20 @@ public class processesGenerator {
         ArrayList<Task> tsaksList = new ArrayList<>();
         Random random = new Random();
         int origin = 0;
-        for(int i = 0;i<n;i++){
-            tsaksList.add(new Task(i,random.nextInt(1,max) ,random.nextInt(origin,activeTime)));
+        int i = 0;
+        for(;i<n*0.70;i++){
+            tsaksList.add(new Task(i,random.nextInt(1,max) ,random.nextInt(origin,activeTime),false));
             if (i%1000==0){
                 origin+=5;
             }
         }
+        for(;i<n;i++){
+            tsaksList.add(new Task(i,random.nextInt(1,max) ,random.nextInt(origin,activeTime), true));
+            if (i%1000==0){
+                origin+=5;
+            }
+        }
+
         Collections.sort(tsaksList,new arrivalComparator());
         writeTasks(tsaksList);
     }

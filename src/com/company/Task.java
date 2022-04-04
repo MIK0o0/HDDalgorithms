@@ -7,21 +7,23 @@ public class Task implements Serializable {
     private int number;
     public int arrivalTime;
     private int segmentNUM;
+    private boolean piorytet;
 
-    public Task(int number, int segement, int arrivalTime) {
+    public Task(int number, int segement, int arrivalTime, boolean piorytet) {
         this.number = number;
         this.arrivalTime = arrivalTime;
         this.segmentNUM = segement;
+        this.piorytet = piorytet;
     }
-
 
     @Override
     public String toString() {
-        return "Process{" +
+        return "Task{" +
                 "number=" + number +
                 ", arrivalTime=" + arrivalTime +
-                ", segment number=" + segmentNUM +
-                '}'+"\n";
+                ", segmentNUM=" + segmentNUM +
+                ", piorytet=" + piorytet +
+                '}';
     }
 
     public int getNumber() {
@@ -47,5 +49,13 @@ public class Task implements Serializable {
 
     public void setWaitingTime(int waitingTime) {
         this.segmentNUM = waitingTime;
+    }
+
+    public boolean isPiorytet() {
+        return piorytet;
+    }
+
+    public void setPiorytet(boolean piorytet) {
+        this.piorytet = piorytet;
     }
 }
