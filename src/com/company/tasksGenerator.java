@@ -1,11 +1,13 @@
 package com.company;
 
+import Comparatory.arrivalComparator;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class processesGenerator {
+public class tasksGenerator {
 
     public void writeTasks(ArrayList<Task> list){
         try(ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream("tasks.ser"))){
@@ -17,19 +19,12 @@ public class processesGenerator {
     public void generator(int n,int activeTime,int max){
         ArrayList<Task> tsaksList = new ArrayList<>();
         Random random = new Random();
-        int origin = 0;
         int i = 0;
         for(;i<n*0.70;i++){
-            tsaksList.add(new Task(i,random.nextInt(1,max) ,random.nextInt(origin,activeTime),false));
-            if (i%1000==0){
-                origin+=5;
-            }
+            tsaksList.add(new Task(i,random.nextInt(1,max) ,random.nextInt(1,activeTime),false));
         }
         for(;i<n;i++){
-            tsaksList.add(new Task(i,random.nextInt(1,max) ,random.nextInt(origin,activeTime), true));
-            if (i%1000==0){
-                origin+=5;
-            }
+            tsaksList.add(new Task(i,random.nextInt(1,max) ,random.nextInt(1,activeTime), true));
         }
 
         Collections.sort(tsaksList,new arrivalComparator());

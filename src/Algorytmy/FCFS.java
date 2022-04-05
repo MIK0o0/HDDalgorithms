@@ -1,4 +1,6 @@
-package com.company;
+package Algorytmy;
+
+import com.company.Task;
 
 import java.util.ArrayList;
 

@@ -23,7 +23,7 @@ public class Task implements Serializable {
                 ", arrivalTime=" + arrivalTime +
                 ", segmentNUM=" + segmentNUM +
                 ", piorytet=" + piorytet +
-                '}';
+                '\n';
     }
 
     public int getNumber() {

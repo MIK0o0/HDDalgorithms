@@ -1,4 +1,6 @@
-package com.company;
+package Comparatory;
+
+import com.company.Task;
 
 import java.util.Comparator;
 
@@ -11,7 +13,7 @@ public scanComparator(int headSegemnt){
 public int compare(Task p1, Task p2) {
         int tym = (p1.getSegment() - headSegemnt) - (p2.getSegment()- headSegemnt);
         if (tym == 0){
-        return 0;
+        return new arrivalComparator().compare(p1,p2);
         }else if (tym > 0){
         return 1;
         }else {

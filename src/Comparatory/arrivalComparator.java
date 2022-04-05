@@ -1,4 +1,6 @@
-package com.company;
+package Comparatory;
+
+import com.company.Task;
 
 import java.util.Comparator;
 
